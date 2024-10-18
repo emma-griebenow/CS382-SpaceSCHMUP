@@ -57,7 +57,20 @@ public class Hero : MonoBehaviour
         if (Input.GetAxis("Jump") == 1 && fireEvent != null)
         {
             fireEvent();
+            TempFire();
         }
+    }
+
+    void TempFire()
+    {
+        GameObject projGO = Instantiate<GameObject>(projectilePrefab);
+        projGO.transform.position = transform.position;
+        Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
+
+        ProjectileHero proj = projGO.GetComponent<ProjectileHero>();
+        proj.type = eWeaponType.blaster;
+        float tSpeed = Main.GET_WEAPON_DEFINITION(proj.type).velocity;
+        rigidB.velocity = Vector3.up * tSpeed;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -54,10 +54,10 @@ public class Enemy : MonoBehaviour
         pos = tempPos;
     }
 
+   
     private void OnCollisionEnter(Collision coll)
     {
         GameObject otherGO = coll.gameObject;
-
         ProjectileHero p = otherGO.GetComponent<ProjectileHero>();
         if (p != null)
         {
